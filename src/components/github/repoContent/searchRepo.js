@@ -7,9 +7,6 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import RepoList from "./repoList";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 
 const useStyles = makeStyles({
   container: {
@@ -30,19 +27,6 @@ const useStyles = makeStyles({
 const SearchRepo = (props) => {
   const [err, setErr] = useState("");
   const { data, getRepo, fetchData, onChange } = props;
-
-  const validationSchema = Yup.object().shape({
-    fullname: Yup.string().required("Fullname is required"),
-  });
-
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-  });
 
   const classes = useStyles();
   return (
