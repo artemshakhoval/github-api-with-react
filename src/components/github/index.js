@@ -5,12 +5,13 @@ import axios from "axios";
 function Content() {
   const [getRepo, setGetRepo] = useState("");
   const [data, setData] = useState([]);
+  const [arr, setArr] = useState([])
 
   const fetchData = async (e) => {
     e.preventDefault();
     const res = await axios.get(`https://api.github.com/users/${getRepo}`);
     setData([res.data]);
-
+    addRepo()
     //setGetRepo("");
   };
 
@@ -19,7 +20,13 @@ function Content() {
   // }, []);
 
   const addRepo = (repo) => {
-    setData((prev) => [...prev, repo]);
+    // setArr((prev) => ({
+    //   arr: [...prev.arr, repo]
+    // }))
+    let list = [...data]
+    arr.push(list)
+    setArr(arr)
+    console.log(arr);
   };
 
   const onChange = (e) => {
@@ -30,6 +37,7 @@ function Content() {
     <>
       <SearchRepo
         data={data}
+        arr={arr}
         getRepo={getRepo}
         fetchData={fetchData}
         onChange={onChange}

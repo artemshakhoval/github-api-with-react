@@ -32,55 +32,58 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Repo = (props) => {
-  const { data, getRepo, fetchData } = props;
-  //console.log(fetchData);
+  const { data, arr, getRepo, fetchData } = props;
+  console.log(arr);
   const classes = useStyles();
 
   return (
     <>
-      {data ? (
-        data.map((el, ind) => {
-          return (
-            <TableContainer key={ind} className={classes.table}>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Avatar</TableCell>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Login</TableCell>
-                    <TableCell>Location</TableCell>
-                    <TableCell>More Details</TableCell>
-                    <TableCell>Favorite</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>
-                      {(
-                        <img
-                          src={el.avatar_url}
-                          alt={el.login}
-                          style={{ width: 80 }}
-                        />
-                      ) || "empty"}
-                    </TableCell>
-                    <TableCell>{el.name || "empty"}</TableCell>
-                    <TableCell>{el.login || "empty"}</TableCell>
-                    <TableCell>{el.location || "empty"}</TableCell>
-                    <TableCell>{<RepoDetails data={data} />}</TableCell>
-                    <TableCell>
-                      {
-                        <IconButton>
-                          <FavoriteBorderOutlined />
-                        </IconButton>
-                      }
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          );
+      {arr ? (
+        arr.map(el => {
+          return data.map((el, ind) => {
+            return (
+              <TableContainer key={ind} className={classes.table}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Avatar</TableCell>
+                      <TableCell>Name</TableCell>
+                      <TableCell>Login</TableCell>
+                      <TableCell>Location</TableCell>
+                      <TableCell>More Details</TableCell>
+                      <TableCell>Favorite</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>
+                        {(
+                          <img
+                            src={el.avatar_url}
+                            alt={el.login}
+                            style={{ width: 80 }}
+                          />
+                        ) || "empty"}
+                      </TableCell>
+                      <TableCell>{el.name || "empty"}</TableCell>
+                      <TableCell>{el.login || "empty"}</TableCell>
+                      <TableCell>{el.location || "empty"}</TableCell>
+                      <TableCell>{<RepoDetails data={data} />}</TableCell>
+                      <TableCell>
+                        {
+                          <IconButton>
+                            <FavoriteBorderOutlined />
+                          </IconButton>
+                        }
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            );
+          })
         })
+        
       ) : (
         <Typography className={classes.notFound} variant="h4">
           Repository not found
