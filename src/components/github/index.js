@@ -10,8 +10,10 @@ function Content() {
   const fetchData = async (e) => {
     e.preventDefault();
     const res = await axios.get(`https://api.github.com/users/${getRepo}`);
-    setData([res.data]);
     addRepo()
+    setData([res.data]);
+    storageData()
+    
     //setGetRepo("");
   };
 
@@ -23,12 +25,16 @@ function Content() {
     // setArr((prev) => ({
     //   arr: [...prev.arr, repo]
     // }))
-    let length = 0
     let list = [...data]
     arr.push(list)
     setArr(arr)
     console.log(arr);
   };
+
+  const storageData = () => {
+    localStorage.setItem('data', JSON.stringify(data))
+    let storedData = JSON.parse(localStorage.getItem("data"));
+  }
 
   const onChange = (e) => {
     setGetRepo(e.target.value);

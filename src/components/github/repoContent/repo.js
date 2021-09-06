@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Repo = (props) => {
-  const { data, arr, getRepo, fetchData } = props;
+  const { data, arr } = props;
   console.log(arr);
   const classes = useStyles();
 

@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 
 const SearchRepo = (props) => {
   const [err, setErr] = useState("");
-  const { data, arr, getRepo, fetchData, onChange, addRepo } = props;
+  const { data, arr, getRepo, fetchData, onChange } = props;
 
   const classes = useStyles();
   return (
@@ -54,7 +54,7 @@ const SearchRepo = (props) => {
       </Container>
 
       <Container>
-        <RepoList data={data} arr={arr} getRepo={getRepo} fetchData={fetchData} />
+        <RepoList data={data} arr={arr} />
       </Container>
     </>
   );
