@@ -40,7 +40,7 @@ const Repo = (props) => {
     <>
       {arr ? (
         arr.map(el => {
-          return data.map((el, ind) => {
+          return el.map((el, ind) => {
             return (
               <TableContainer key={ind} className={classes.table}>
                 <Table>

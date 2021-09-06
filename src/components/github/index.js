@@ -23,6 +23,7 @@ function Content() {
     // setArr((prev) => ({
     //   arr: [...prev.arr, repo]
     // }))
+    let length = 0
     let list = [...data]
     arr.push(list)
     setArr(arr)
