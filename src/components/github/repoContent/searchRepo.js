@@ -24,8 +24,16 @@ const useStyles = makeStyles({
   },
 });
 
+const tableHead = [
+  "Avatar",
+  "Name",
+  "Login",
+  "Location",
+  "More Details",
+  "Favorite",
+];
+
 const SearchRepo = (props) => {
-  const [err, setErr] = useState("");
   const { data, arr, getRepo, fetchData, onChange } = props;
 
   const classes = useStyles();
@@ -54,7 +62,7 @@ const SearchRepo = (props) => {
       </Container>
 
       <Container>
-        <RepoList data={data} arr={arr} />
+        <RepoList data={data} arr={arr} tableHead={tableHead} />
       </Container>
     </>
   );

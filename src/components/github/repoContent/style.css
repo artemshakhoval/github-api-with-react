@@ -1,0 +1,15 @@
+.addFav {
+    color: red;
+}
+
+.delFav {
+    color: black;
+}
+
+.addText {
+    display: block;
+}
+.delText {
+    display: none;
+}
+

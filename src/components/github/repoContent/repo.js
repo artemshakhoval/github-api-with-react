@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  CardActions,
   IconButton,
   makeStyles,
   Typography,
-  Grid,
   TableContainer,
   Table,
   TableHead,
@@ -14,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { FavoriteBorderOutlined } from "@material-ui/icons";
 import RepoDetails from "../modal/repoDetails";
+import "./style.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,26 +31,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Repo = (props) => {
-  const { data, arr } = props;
-  console.log(arr);
+  const [fav, setFav] = React.useState({
+    add: true,
+  });
+  const { data, arr, tableHead } = props;
   const classes = useStyles();
+  const btn_class = fav.add ? "delFav" : "addFav";
+  const par_class = fav.add ? "delText" : "addText";
+
+  const addToFav = () => {
+    setFav({ add: !fav.add });
+  };
 
   return (
     <>
-      {arr ? (
-        arr.map(el => {
-          return el.map((el, ind) => {
+      {arr.length && arr ? (
+        arr.map((array) => {
+          return array.map((el, ind) => {
             return (
               <TableContainer key={ind} className={classes.table}>
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell>Avatar</TableCell>
-                      <TableCell>Name</TableCell>
-                      <TableCell>Login</TableCell>
-                      <TableCell>Location</TableCell>
-                      <TableCell>More Details</TableCell>
-                      <TableCell>Favorite</TableCell>
+                      {tableHead.map((head, i) => {
+                        return <TableCell key={i}>{head}</TableCell>;
+                      })}
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -68,12 +72,20 @@ const Repo = (props) => {
                       <TableCell>{el.name || "empty"}</TableCell>
                       <TableCell>{el.login || "empty"}</TableCell>
                       <TableCell>{el.location || "empty"}</TableCell>
-                      <TableCell>{<RepoDetails data={data} />}</TableCell>
+                      <TableCell>
+                        {<RepoDetails data={data} arr={arr} />}
+                      </TableCell>
                       <TableCell>
                         {
-                          <IconButton>
-                            <FavoriteBorderOutlined />
-                          </IconButton>
+                          <>
+                            <Typography
+                              className={par_class}
+                            >{`Added to favorite`}</Typography>
+
+                            <IconButton onClick={addToFav}>
+                              <FavoriteBorderOutlined className={btn_class} />
+                            </IconButton>
+                          </>
                         }
                       </TableCell>
                     </TableRow>
@@ -81,9 +93,8 @@ const Repo = (props) => {
                 </Table>
               </TableContainer>
             );
-          })
+          });
         })
-        
       ) : (
         <Typography className={classes.notFound} variant="h4">
           Repository not found

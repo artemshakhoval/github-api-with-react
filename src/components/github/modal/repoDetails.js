@@ -34,7 +34,7 @@ export default function SimpleModal(props) {
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 
-  const { data } = props;
+  const { data, arr } = props;
 
   const handleOpen = () => {
     setOpen(true);
@@ -56,35 +56,41 @@ export default function SimpleModal(props) {
         aria-describedby="simple-modal-description"
       >
         <Container>
-          {data.map((el, ind) => {
-            return (
-              <Container key={ind} style={modalStyle} className={classes.paper}>
-                <img
-                  src={el.avatar_url}
-                  alt={el.login}
-                  style={{ width: 100 }}
-                />
-                <Typography variant="body1">{`Name: ${el.name}`}</Typography>
-                <Typography variant="body1">{`Login: ${el.login}`}</Typography>
-                <Typography variant="body1">{`Email: ${el.email}`}</Typography>
-                <Typography variant="body1">{`Location: ${el.location}`}</Typography>
-                <Typography variant="body1">{`Created at: ${el.created_at}`}</Typography>
-                <Typography variant="body1">{`Public repos: ${el.public_repos}`}</Typography>
-                <Typography variant="body1">{`URL: ${el.html_url}`}</Typography>
-                <Typography variant="body1">{`BIO: ${el.bio}`}</Typography>
-                <Typography variant="body1">{`Company: ${el.company}`}</Typography>
-                <Typography variant="body1">{`Followers: ${el.followers}`}</Typography>
-                <Typography variant="body1">{`Following: ${el.following}`}</Typography>
-
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  onClick={handleClose}
+          {arr.map((k) => {
+            return k.map((el, ind) => {
+              return (
+                <Container
+                  key={ind}
+                  style={modalStyle}
+                  className={classes.paper}
                 >
-                  Exit
-                </Button>
-              </Container>
-            );
+                  <img
+                    src={el.avatar_url}
+                    alt={el.login}
+                    style={{ width: 100 }}
+                  />
+                  <Typography variant="body1">{`Name: ${el.name}`}</Typography>
+                  <Typography variant="body1">{`Login: ${el.login}`}</Typography>
+                  <Typography variant="body1">{`Email: ${el.email}`}</Typography>
+                  <Typography variant="body1">{`Location: ${el.location}`}</Typography>
+                  <Typography variant="body1">{`Created at: ${el.created_at}`}</Typography>
+                  <Typography variant="body1">{`Public repos: ${el.public_repos}`}</Typography>
+                  <Typography variant="body1">{`URL: ${el.html_url}`}</Typography>
+                  <Typography variant="body1">{`BIO: ${el.bio}`}</Typography>
+                  <Typography variant="body1">{`Company: ${el.company}`}</Typography>
+                  <Typography variant="body1">{`Followers: ${el.followers}`}</Typography>
+                  <Typography variant="body1">{`Following: ${el.following}`}</Typography>
+
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    onClick={handleClose}
+                  >
+                    Exit
+                  </Button>
+                </Container>
+              );
+            });
           })}
         </Container>
       </Modal>

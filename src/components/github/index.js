@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SearchRepo from "./repoContent/searchRepo";
 import axios from "axios";
 
 function Content() {
   const [getRepo, setGetRepo] = useState("");
   const [data, setData] = useState([]);
-  const [arr, setArr] = useState([])
+  const [arr, setArr] = useState([]);
 
   const fetchData = async (e) => {
     e.preventDefault();
     const res = await axios.get(`https://api.github.com/users/${getRepo}`);
-    addRepo()
+    addRepo();
     setData([res.data]);
-    storageData()
-    
+    storageRepo();
+    storageData();
     //setGetRepo("");
   };
 
@@ -25,16 +25,20 @@ function Content() {
     // setArr((prev) => ({
     //   arr: [...prev.arr, repo]
     // }))
-    let list = [...data]
-    arr.push(list)
-    setArr(arr)
-    console.log(arr);
+    let list = [...data];
+    arr.push(list);
+    setArr(arr);
+  };
+
+  const storageRepo = () => {
+    localStorage.setItem("getRepo", JSON.stringify(getRepo));
+    return JSON.parse(localStorage.getItem("getRepo"));
   };
 
   const storageData = () => {
-    localStorage.setItem('data', JSON.stringify(data))
-    let storedData = JSON.parse(localStorage.getItem("data"));
-  }
+    localStorage.setItem("arr", JSON.stringify(arr));
+    return JSON.parse(localStorage.getItem("arr"));
+  };
 
   const onChange = (e) => {
     setGetRepo(e.target.value);
