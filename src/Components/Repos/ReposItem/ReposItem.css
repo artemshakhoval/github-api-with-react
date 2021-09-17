@@ -1,0 +1,22 @@
+.addFav {
+    color: red;
+}
+
+.delFav {
+    color: rgb(194, 194, 194);
+    
+}
+
+.delFav:hover {
+    color: #fff;
+}
+
+.addText {
+    display: block;
+    font-size: 12px;
+    color: #fff;
+}
+
+.delText {
+    display: none;
+}

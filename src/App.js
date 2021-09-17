@@ -1,6 +1,7 @@
-import "./App.css";
-import Wrapper from "./components/index";
+import React from "react";
+import Api from "./Components/Api";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import "./App.css";
 
 const theme = createTheme({
   typography: {
@@ -8,14 +9,14 @@ const theme = createTheme({
   },
 });
 
-function App() {
+const App = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Wrapper />
+        <Api />
       </ThemeProvider>
     </>
   );
-}
+};
 
 export default App;

@@ -1,6 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import Content from "./github/index";
+import React, { useState, useEffect } from "react";
+import NewRepos from "./Repos/NewRepos";
+import Repos from "./Repos/Repos";
 import {
   Box,
   Container,
@@ -11,18 +11,10 @@ import {
 import "animate.css";
 
 const useStyles = makeStyles({
-  wrapper: {
-    width: "100%",
-    backgroundColor: "#3147b2",
-    color: "white",
-    display: "flex",
-    alignItems: "center",
-    padding: "0.6rem 0 0.6rem 3rem",
-  },
-  before: {
+  head: {
     width: "100%",
     backgroundColor: "#000",
-    color: "white",
+    color: "#fff",
     display: "flex",
     alignItems: "center",
     padding: "0.6rem 0 0.6rem 3rem",
@@ -34,16 +26,18 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
   name: {
+    color: "#fff",
     letterSpacing: "0.2rem",
     fontWeight: 700,
-    fontSize: "4rem",
+    fontSize: "2.5rem",
   },
   label: {
     fontSize: "1.3rem",
   },
 });
 
-const Wrapper = () => {
+const Wrapper = (props) => {
+  const { fetchedData, getRepoNameHandler, repoName, repos } = props;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -56,14 +50,20 @@ const Wrapper = () => {
     <>
       {loading === false ? (
         <>
-          <Grid className={classes.wrapper}>
+          <Grid className={classes.head}>
             <Typography className={classes.label}>GITHUB API</Typography>
           </Grid>
-          <Content />
+
+          <NewRepos
+            fetchedData={fetchedData}
+            getRepoNameHandler={getRepoNameHandler}
+            repoName={repoName}
+          />
+          <Repos items={repos} />
         </>
       ) : (
         <>
-          <Grid className={classes.before}>
+          <Grid className={classes.head}>
             <Typography className={classes.label}>GITHUB API</Typography>
           </Grid>
 
