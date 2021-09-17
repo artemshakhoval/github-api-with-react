@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RepoDetails from "../RepoDetails";
 import {
   IconButton,
   Table,
@@ -11,9 +12,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { FavoriteBorderOutlined } from "@material-ui/icons";
-
 import "./ReposItem.css";
-import RepoDetails from "../RepoDetails";
 
 const tableHead = [
   "Avatar",
@@ -44,9 +43,6 @@ const ReposItem = (props) => {
     root: {
       color: "#fff",
       textAlign: "center",
-      // "&:hover": {
-      //   backgroundColor: "rgb(25, 25, 25)",
-      // },
     },
   }))(TableCell);
 
@@ -75,6 +71,7 @@ const ReposItem = (props) => {
               {
                 <>
                   <Typography
+                    variant="body2"
                     className={par_class}
                   >{`Added to list`}</Typography>
 
