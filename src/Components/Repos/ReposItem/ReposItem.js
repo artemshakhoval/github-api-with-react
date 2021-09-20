@@ -12,6 +12,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { FavoriteBorderOutlined } from "@material-ui/icons";
+import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
 import "./ReposItem.css";
 
 const tableHead = [
@@ -21,19 +22,17 @@ const tableHead = [
   "Location",
   "More Details",
   "Favorite",
+  "Actions",
 ];
 
 const ReposItem = (props) => {
-  const { avatar, name, login, location, item } = props;
-
-  const tableRow = [name, login, location];
+  const { avatar, name, login, location, item, filteredRepos } = props;
 
   const [fav, setFav] = useState({
     add: true,
   });
 
-  const btn_class = fav.add ? "delFav" : "addFav";
-  const par_class = fav.add ? "delText" : "addText";
+  const tableRow = [name, login, location];
 
   const addToFav = () => {
     setFav({ add: !fav.add });
@@ -45,6 +44,9 @@ const ReposItem = (props) => {
       textAlign: "center",
     },
   }))(TableCell);
+
+  const btn_class = fav.add ? "delFav" : "addFav";
+  const par_class = fav.add ? "delText" : "addText";
 
   return (
     <TableContainer>
@@ -66,7 +68,9 @@ const ReposItem = (props) => {
                 <StyledTableCell key={ind}>{row || "empty"}</StyledTableCell>
               );
             })}
-            <StyledTableCell>{<RepoDetails item={item} />}</StyledTableCell>
+            <StyledTableCell>
+              {<RepoDetails item={item} filteredRepos={filteredRepos} />}
+            </StyledTableCell>
             <StyledTableCell>
               {
                 <>
@@ -80,6 +84,11 @@ const ReposItem = (props) => {
                   </IconButton>
                 </>
               }
+            </StyledTableCell>
+            <StyledTableCell>
+              <IconButton>
+                <HighlightOffOutlinedIcon style={{ color: "#fff" }} />
+              </IconButton>
             </StyledTableCell>
           </TableRow>
         </TableBody>

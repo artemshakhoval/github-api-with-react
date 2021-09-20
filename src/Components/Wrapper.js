@@ -12,7 +12,6 @@ import "animate.css";
 
 const useStyles = makeStyles({
   head: {
-    width: "100%",
     backgroundColor: "#000",
     color: "#fff",
     display: "flex",

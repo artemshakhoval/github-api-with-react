@@ -17,7 +17,7 @@ const Index = () => {
     setRepoName("");
   };
 
-  console.log(repos);
+  //console.log(repos);
 
   const getRepoNameHandler = (e) => {
     setRepoName(e.target.value);

@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RepoDetails = (props) => {
-  const { item } = props;
-  console.log(item);
+  const { item, filteredRepos } = props;
+  //console.log(item);
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -58,7 +58,7 @@ const RepoDetails = (props) => {
         aria-describedby="simple-modal-description"
       >
         <Container>
-          {item.map((el, ind) => {
+          {filteredRepos.map((el, ind) => {
             return (
               <Container key={ind} style={modalStyle} className={classes.paper}>
                 <img
