@@ -36,7 +36,7 @@ const useStyles = makeStyles({
 });
 
 const Wrapper = (props) => {
-  const { fetchedData, getRepoNameHandler, repoName, repos } = props;
+  const { fetchedData, getRepoNameHandler, repoName, repos, isValid } = props;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -57,6 +57,7 @@ const Wrapper = (props) => {
             fetchedData={fetchedData}
             getRepoNameHandler={getRepoNameHandler}
             repoName={repoName}
+            isValid={isValid}
           />
           <Repos items={repos} />
         </>

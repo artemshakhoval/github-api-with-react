@@ -20,13 +20,14 @@ const useStyles = makeStyles({
 });
 
 const Searcher = (props) => {
-  const { fetchedData, getRepoNameHandler, repoName } = props;
+  const { fetchedData, getRepoNameHandler, repoName, isValid } = props;
 
   const classes = useStyles();
   return (
     <>
       <Container maxWidth="md" className={classes.container}>
         <TextField
+          //style={{ borderColor: !isValid ? "red" : "black" }}
           className={classes.input}
           value={repoName}
           onChange={getRepoNameHandler}

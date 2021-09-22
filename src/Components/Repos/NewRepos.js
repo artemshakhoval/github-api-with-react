@@ -2,7 +2,7 @@ import React from "react";
 import Searcher from "./Searcher";
 
 const NewRepos = (props) => {
-  const { fetchedData, getRepoNameHandler, repoName } = props;
+  const { fetchedData, getRepoNameHandler, repoName, isValid } = props;
 
   return (
     <>
@@ -10,6 +10,7 @@ const NewRepos = (props) => {
         fetchedData={fetchedData}
         getRepoNameHandler={getRepoNameHandler}
         repoName={repoName}
+        isValid={isValid}
       />
     </>
   );

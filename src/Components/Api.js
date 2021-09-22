@@ -5,6 +5,7 @@ import axios from "axios";
 const Index = () => {
   const [repoName, setRepoName] = useState("");
   const [repos, setRepos] = useState([]);
+  const [isValid, setIsValid] = useState(true); //////// valid
 
   const fetchedData = async (e) => {
     e.preventDefault();
@@ -13,13 +14,19 @@ const Index = () => {
         return [...prev, res.data];
       });
     });
-
+    // if (repoName.trim().length === 0) {
+    //   setIsValid(false);
+    //   return;
+    // }
     setRepoName("");
   };
 
   //console.log(repos);
 
   const getRepoNameHandler = (e) => {
+    // if (e.target.value.trim().length > 0) {
+    //   setIsValid(true);
+    // }
     setRepoName(e.target.value);
   };
 
@@ -30,6 +37,7 @@ const Index = () => {
         repoName={repoName}
         repos={repos}
         getRepoNameHandler={getRepoNameHandler}
+        isValid={isValid}
       />
     </>
   );
